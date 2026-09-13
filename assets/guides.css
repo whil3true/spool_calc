@@ -1,17 +1,21 @@
-.guide-page { padding-block: 3rem 5rem; }
+.guide-page { padding-block: 3.2rem 5rem; }
 .guide-page h1 { font-size: clamp(2rem, 7vw, 3.6rem); }
 .guide-page h2 { margin-top: 2.2rem; font-size: 1.5rem; }
 .guide-page ul, .guide-page ol { padding-left: 1.3rem; }
 .guide-page li + li { margin-top: .45rem; }
 .guide-nav { display: flex; flex-wrap: wrap; gap: .7rem; margin-block: 1.5rem 2rem; }
-.guide-nav a { padding: .45rem .7rem; border: 1px solid var(--line); border-radius: .55rem; text-decoration: none; }
-.guide-nav a:hover { background: var(--surface); }
-.guide-callout { margin-block: 1.5rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .8rem; background: var(--surface); }
+.guide-nav a { padding: .5rem .75rem; border: 1px solid var(--line); border-radius: .7rem; text-decoration: none; background: white; }
+.guide-nav a:hover { background: var(--accent-soft); }
+.guide-callout { margin-block: 1.5rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .9rem; background: var(--surface-warm); }
 .guide-callout > :first-child { margin-top: 0; }
 .guide-callout > :last-child { margin-bottom: 0; }
 .guide-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
 .guide-actions .button { margin-top: 0; }
 .guide-grid { display: grid; gap: 1rem; }
-.guide-card { padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .8rem; background: var(--surface); }
-.guide-card h2, .guide-card h3 { margin-top: 0; }
+.guide-card { padding: 1.1rem 1.2rem; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); box-shadow: var(--shadow); }
+.guide-card-link { display: block; text-decoration: none; transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
+.guide-card-link:hover { transform: translateY(-2px); border-color: #aad4ca; box-shadow: 0 16px 36px rgba(25,72,65,.13); }
+.guide-card h2, .guide-card h3 { margin-top: 0; color: var(--accent-strong); }
+.guide-card p { color: var(--muted); margin-bottom: 0; }
 @media (min-width: 720px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .guide-card-link { transition: none; } }
