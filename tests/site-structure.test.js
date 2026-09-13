@@ -73,6 +73,7 @@ test('all public HTML pages load Yandex Metrika counter 112552271', () => {
   assert.match(bootstrap, /webvisor:\s*true/);
   assert.match(bootstrap, /clickmap:\s*true/);
   assert.match(bootstrap, /trackLinks:\s*true/);
+  assert.doesNotMatch(bootstrap, /ecommerce\s*:/i, 'Metrika ecommerce must stay disabled');
 });
 
 test('custom domain files point to shpulometr.ru', () => {
