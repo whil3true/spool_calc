@@ -1,0 +1,26 @@
+.tool-page { padding-block: 3rem 5rem; }
+.tool-page h1 { font-size: clamp(2rem, 7vw, 3.6rem); }
+.tool-step { margin-block: 2rem; padding: 1.25rem; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); }
+.tool-step h2 { margin-top: 0; font-size: 1.35rem; }
+.form-help { color: var(--muted); font-size: .95rem; }
+.pair-list { display: grid; gap: 1rem; }
+.pair-row { padding-block: .5rem 1rem; border-bottom: 1px solid var(--line); }
+.field-grid { display: grid; gap: .8rem; grid-template-columns: 1fr 1fr; }
+.field { display: grid; gap: .35rem; font-weight: 650; }
+.field input { width: 100%; min-height: 46px; padding: .7rem .8rem; border: 1px solid var(--line); border-radius: .6rem; background: var(--bg); color: var(--text); font: inherit; }
+.choice-group { display: grid; gap: .75rem; margin: 1rem 0 1.25rem; border: 0; padding: 0; }
+.choice-group label { display: flex; gap: .6rem; align-items: flex-start; }
+.field-error { min-height: 1.4em; margin: .35rem 0 0; color: #a33124; font-weight: 650; }
+.button-secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
+.button-secondary:hover { background: var(--surface); }
+.text-button { border: 0; padding: .35rem 0; background: none; color: var(--accent); font: inherit; font-weight: 650; text-decoration: underline; cursor: pointer; }
+.result-card { margin-top: 2.5rem; padding: 1.5rem; border: 2px solid var(--accent); border-radius: 1rem; background: var(--surface); }
+.result-card h2 { margin: .2rem 0; font-size: clamp(2rem, 8vw, 3.2rem); }
+.result-range { font-size: 1.1rem; font-weight: 650; }
+.result-meta { display: grid; gap: .7rem; margin-block: 1.25rem; }
+.result-meta div { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); }
+.result-meta dt { color: var(--muted); }
+.result-meta dd { margin: 0; font-weight: 700; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@media (max-width: 520px) { .field-grid { grid-template-columns: 1fr; } .tool-step { padding: 1rem; } }
+@media (prefers-color-scheme: dark) { .field-error { color: #ff9d91; } }
