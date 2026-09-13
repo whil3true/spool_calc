@@ -4,7 +4,8 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const repoRoot = process.cwd();
-const sitePrefix = '/spool_calc';
+const canonicalOrigin = 'https://shpulometr.ru';
+const oldPagesHost = /whil3true\.github\.io\/spool_calc/i;
 
 function sitemapUrls() {
   const sitemap = readFileSync(resolve(repoRoot, 'sitemap.xml'), 'utf8');
@@ -13,8 +14,8 @@ function sitemapUrls() {
 
 function localPathFromUrl(url) {
   const parsed = new URL(url);
-  assert.ok(parsed.pathname.startsWith(`${sitePrefix}/`) || parsed.pathname === `${sitePrefix}/`);
-  const relative = parsed.pathname.slice(sitePrefix.length).replace(/^\//, '');
+  assert.equal(parsed.origin, canonicalOrigin, `unexpected sitemap origin: ${url}`);
+  const relative = parsed.pathname.replace(/^\//, '');
   return relative.endsWith('/') || relative === '' ? `${relative}index.html` : relative;
 }
 
@@ -27,7 +28,7 @@ function collectFiles(dir, suffixes, result = []) {
   return result;
 }
 
-test('sitemap contains exactly sixteen real indexable pages', () => {
+test('sitemap contains exactly sixteen production-domain pages', () => {
   const urls = sitemapUrls();
   assert.equal(urls.length, 16);
   assert.equal(new Set(urls).size, 16);
@@ -45,22 +46,41 @@ test('guide index links to the ten final guide pages', () => {
   for (const slug of guideLinks) assert.ok(existsSync(resolve(repoRoot, `guides/${slug}/index.html`)), `missing guide: ${slug}`);
 });
 
-test('every indexable page has SEO basics and Shpulometr brand', () => {
+test('every indexable page has production canonical, SEO basics and Metrika', () => {
   for (const url of sitemapUrls()) {
     const path = resolve(repoRoot, localPathFromUrl(url));
     const html = readFileSync(path, 'utf8');
     assert.match(html, /<title>[^<]+<\/title>/i, `missing title: ${url}`);
     assert.match(html, /<meta name="description" content="[^"]+">/i, `missing description: ${url}`);
-    assert.match(html, /<link rel="canonical" href="[^"]+">/i, `missing canonical: ${url}`);
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)">/i)?.[1];
+    assert.equal(canonical, url, `canonical mismatch: ${url}`);
     assert.equal([...html.matchAll(/<h1(?:\s[^>]*)?>/gi)].length, 1, `expected one H1: ${url}`);
-    assert.match(html, /Шпулометр/i, `new brand missing: ${url}`);
+    assert.match(html, /Шпулометр/i, `brand missing: ${url}`);
+    assert.match(html, /metrika\.js/i, `Metrika bootstrap missing: ${url}`);
+    assert.doesNotMatch(html, oldPagesHost, `old GitHub Pages host remains: ${url}`);
   }
 });
 
-test('merged underfill page is non-indexable and points to spool lip guide', () => {
+test('Metrika bootstrap uses the production counter and bridges product events', () => {
+  const source = readFileSync(resolve(repoRoot, 'assets/metrika.js'), 'utf8');
+  assert.match(source, /112552271/);
+  assert.match(source, /spoolcalc:event/);
+  assert.match(source, /reachGoal/);
+  assert.match(source, /webvisor:\s*true/);
+});
+
+test('robots and sitemap use the production domain', () => {
+  const robots = readFileSync(resolve(repoRoot, 'robots.txt'), 'utf8');
+  const sitemap = readFileSync(resolve(repoRoot, 'sitemap.xml'), 'utf8');
+  assert.match(robots, /Sitemap:\s*https:\/\/shpulometr\.ru\/sitemap\.xml/i);
+  assert.doesNotMatch(robots, oldPagesHost);
+  assert.doesNotMatch(sitemap, oldPagesHost);
+});
+
+test('merged underfill page is non-indexable and points to production spool lip guide', () => {
   const html = readFileSync(resolve(repoRoot, 'guides/underfill-overfill/index.html'), 'utf8');
   assert.match(html, /name="robots" content="noindex,follow"/i);
-  assert.match(html, /canonical[^>]+spool-lip-gap/i);
+  assert.match(html, /canonical[^>]+https:\/\/shpulometr\.ru\/guides\/spool-lip-gap\//i);
   assert.match(html, /http-equiv="refresh"[^>]+spool-lip-gap/i);
 });
 
