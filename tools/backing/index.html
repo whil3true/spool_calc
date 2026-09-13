@@ -2,25 +2,26 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Калькулятор бэкинга для шпули — Spool Calc</title>
-  <meta name="description" content="Оцените, сколько бэкинга потребуется под основную леску или плетёный шнур по данным с маркировки шпули.">
+  <title>Сколько бэкинга намотать на шпулю — калькулятор — Шпулометр</title>
+  <meta name="description" content="Рассчитайте ориентировочный диапазон бэкинга под леску или плетёный шнур по маркировке шпули и проверьте результат методом обратной намотки.">
   <link rel="canonical" href="https://whil3true.github.io/spool_calc/tools/backing/">
-  <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="Калькулятор бэкинга для шпули — Spool Calc"><meta property="og:description" content="Оценка бэкинга диапазоном с обязательной практической проверкой обратной намоткой."><meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/backing/">
+  <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="Сколько бэкинга намотать на шпулю — калькулятор — Шпулометр"><meta property="og:description" content="Оценка количества бэкинга с диапазоном и практической проверкой обратной намоткой."><meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/backing/">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="../capacity/tool.css"><link rel="stylesheet" href="./tool.css">
 </head>
 <body><a class="skip-link" href="#main">К основному содержанию</a>
-<header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Spool Calc</a><nav aria-label="Основная навигация"><a href="../capacity/">Вместимость</a><a href="../../#tools">Инструменты</a><a href="../../guides/">Справочник</a></nav></div></header>
+<header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Шпулометр</a><nav aria-label="Основная навигация"><a href="../capacity/">Вместимость</a><a href="../../#tools">Инструменты</a><a href="../../guides/">Справочник</a></nav></div></header>
 <main id="main" class="shell narrow tool-page">
-  <p class="eyebrow">Бэкинг</p><h1>Сколько подмотки добавить?</h1>
-  <p class="lead">Укажите шпулю, основную леску и диаметр бэкинга. Остальное посчитаем диапазоном.</p>
-  <div class="quick-facts"><span>≈ 2 минуты</span><span>с практической проверкой</span><span>лучше для mono-бэкинга</span></div>
+  <p class="eyebrow">Бэкинг</p><h1>Калькулятор бэкинга для катушки</h1>
+  <p class="lead">Укажите шпулю, основную леску и диаметр бэкинга. Получите ориентир, сколько подмотки намотать.</p>
+  <div class="quick-facts"><span>≈ 2 минуты</span><span>с практической проверкой</span><span>лучше для моно-бэкинга</span></div>
   <form id="backing-form" novalidate>
     <section class="tool-step" aria-labelledby="spool-title"><h2 id="spool-title">1. Маркировка шпули</h2><p class="form-help">Например: 0,18 мм / 170 м.</p><div id="reference-pairs" class="pair-list"></div><button class="button button-secondary" type="button" id="add-pair">+ Добавить строку</button></section>
     <section class="tool-step" aria-labelledby="main-line-title"><h2 id="main-line-title">2. Основная леска или шнур</h2><fieldset class="choice-group"><legend class="sr-only">Тип основной лески</legend><label><input type="radio" name="mainMaterial" value="mono" checked> Монофильная леска</label><label><input type="radio" name="mainMaterial" value="fluoro"> Флюорокарбон</label><label><input type="radio" name="mainMaterial" value="braid-mm"> Плетёный шнур</label></fieldset><div class="field-grid"><label class="field">Диаметр, мм<input name="mainDiameter" inputmode="decimal" autocomplete="off" placeholder="0,18" aria-describedby="main-error main-help"></label><label class="field">Длина, м<input name="mainLength" inputmode="decimal" autocomplete="off" placeholder="100" aria-describedby="main-error"></label></div><p id="main-help" class="form-help">Для шнура вводите заявленный диаметр. PE и lb в миллиметры не переводим.</p><p id="main-error" class="field-error" aria-live="polite"></p></section>
     <section class="tool-step" aria-labelledby="backing-title"><h2 id="backing-title">3. Бэкинг</h2><label class="field">Диаметр бэкинга, мм<input name="backingDiameter" inputmode="decimal" autocomplete="off" placeholder="0,25" aria-describedby="backing-error backing-help"></label><p id="backing-help" class="form-help">Проще всего оценивать обычную монофильную леску известного диаметра.</p><p id="backing-error" class="field-error" aria-live="polite"></p></section>
     <button class="button" type="submit">Оценить бэкинг</button>
   </form>
-  <section id="result" class="result-card" hidden aria-live="polite" tabindex="-1"><p class="eyebrow">Результат</p><h2 id="result-main"></h2><p id="result-range" class="result-range"></p><dl class="result-meta"><div><dt>Надёжность оценки</dt><dd id="result-confidence"></dd></div><div><dt>Согласованность данных</dt><dd id="result-consistency"></dd></div></dl><p id="result-warning" class="note"></p><div class="verification-box"><h3>Самая надёжная проверка</h3><ol><li>Сначала намотайте основную леску на запасную шпулю.</li><li>Добавьте бэкинг до нужного уровня.</li><li>Перемотайте всё обратно на рабочую шпулю.</li></ol><p>Так вы проверяете результат самой шпулей, а не верой в формулу.</p></div></section>
+  <section id="result" class="result-card" hidden aria-live="polite" tabindex="-1"><p class="eyebrow">Результат</p><h2 id="result-main"></h2><p id="result-range" class="result-range"></p><dl class="result-meta"><div><dt>Надёжность оценки</dt><dd id="result-confidence"></dd></div><div><dt>Согласованность данных</dt><dd id="result-consistency"></dd></div></dl><p id="result-warning" class="note"></p><div class="verification-box"><h3>Самая надёжная проверка</h3><ol><li>Сначала намотайте основную леску на запасную шпулю.</li><li>Добавьте бэкинг до нужного уровня.</li><li>Перемотайте всё обратно на рабочую шпулю.</li></ol><p>Так вы проверяете результат самой шпулей, а не верой в формулу. <a href="../../guides/reverse-winding/">Пошаговый метод обратной намотки</a>.</p></div></section>
+  <section class="tool-step" aria-labelledby="backing-about"><h2 id="backing-about">Что такое бэкинг и зачем он нужен?</h2><p>Бэкинг заполняет лишний объём под основной леской или плетёнкой. Если сначала нужно разобраться с назначением подмотки, откройте <a href="../../guides/why-backing/">короткое объяснение</a>.</p></section>
 </main>
-<footer class="site-footer"><div class="shell">Spool Calc · расчёт выполняется локально в браузере</div></footer><script type="module" src="./app.js"></script>
+<footer class="site-footer"><div class="shell">Шпулометр · расчёт выполняется локально в браузере</div></footer><script type="module" src="./app.js"></script>
 </body></html>
