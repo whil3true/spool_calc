@@ -4,60 +4,47 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Калькулятор вместимости шпули — Spool Calc</title>
-  <meta name="description" content="Оцените, сколько лески другого диаметра войдёт на шпулю по одной или нескольким паспортным парам mm/m.">
+  <meta name="description" content="Оцените, сколько лески другого диаметра войдёт на шпулю по одной или нескольким строкам маркировки диаметра и длины.">
   <link rel="canonical" href="https://whil3true.github.io/spool_calc/tools/capacity/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Калькулятор вместимости шпули — Spool Calc">
-  <meta property="og:description" content="Расчёт по паспортной маркировке шпули с диапазоном неопределённости.">
-  <meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/capacity/">
-  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../../assets/styles.css">
-  <link rel="stylesheet" href="./tool.css">
+  <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="Калькулятор вместимости шпули — Spool Calc"><meta property="og:description" content="Расчёт по данным с маркировки шпули с разумным диапазоном неопределённости."><meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/capacity/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="./tool.css">
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержанию</a>
-  <header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Spool Calc</a><nav aria-label="Основная навигация"><a href="../../#tools">Инструменты</a><a href="../../#method">Как считаем</a></nav></div></header>
+  <header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Spool Calc</a><nav aria-label="Основная навигация"><a href="../../#tools">Инструменты</a><a href="../../guides/">Справочник</a></nav></div></header>
   <main id="main" class="shell narrow tool-page">
     <p class="eyebrow">Инструмент 1</p>
     <h1>Сколько лески войдёт на шпулю?</h1>
-    <p class="lead">Перепишите маркировку со шпули и укажите диаметр новой лески. Мы дадим ориентир и диапазон, а не притворимся штангенциркулем.</p>
+    <p class="lead">Перепишите данные с маркировки шпули и укажите диаметр новой лески. Мы дадим ориентир и диапазон, а не притворимся штангенциркулем.</p>
     <form id="capacity-form" novalidate>
       <section class="tool-step" aria-labelledby="step-1-title">
         <h2 id="step-1-title">1. Что написано на шпуле?</h2>
-        <p class="form-help">Например: 0,18 mm / 170 m. Если строк несколько, добавьте их все.</p>
+        <p class="form-help">Например: 0,18 мм / 170 м. Если строк несколько, добавьте их все.</p>
         <div id="reference-pairs" class="pair-list"></div>
         <button class="button button-secondary" type="button" id="add-pair">Добавить ещё строку с маркировки</button>
       </section>
       <section class="tool-step" aria-labelledby="step-2-title">
         <h2 id="step-2-title">2. Что хотите намотать?</h2>
-        <fieldset class="choice-group">
-          <legend class="sr-only">Тип материала</legend>
+        <fieldset class="choice-group"><legend class="sr-only">Тип материала</legend>
           <label><input type="radio" name="material" value="mono" checked> Монофильная леска</label>
           <label><input type="radio" name="material" value="fluoro"> Флюорокарбон</label>
           <label><input type="radio" name="material" value="braid-mm"> Плетёный шнур по заявленному диаметру</label>
         </fieldset>
-        <label class="field">Диаметр новой лески или шнура, mm
+        <label class="field">Диаметр новой лески или шнура, мм
           <input id="target-diameter" name="targetDiameter" inputmode="decimal" autocomplete="off" placeholder="0,20" aria-describedby="target-help target-error">
         </label>
-        <p id="target-help" class="form-help">Для braid используйте только заявленный производителем mm. PE и lb сюда не переводятся.</p>
+        <p id="target-help" class="form-help">Для плетёного шнура используйте только заявленный производителем диаметр в миллиметрах (мм). Размер PE и прочность в фунтах (lb) сюда не переводятся.</p>
         <p id="target-error" class="field-error" aria-live="polite"></p>
       </section>
       <button class="button" type="submit">Рассчитать вместимость</button>
     </form>
     <section id="result" class="result-card" hidden aria-live="polite" tabindex="-1">
-      <p class="eyebrow">Результат</p>
-      <h2 id="result-main"></h2>
-      <p id="result-range" class="result-range"></p>
-      <dl class="result-meta">
-        <div><dt>Уверенность</dt><dd id="result-confidence"></dd></div>
-        <div><dt>Согласованность маркировки</dt><dd id="result-consistency"></dd></div>
-      </dl>
+      <p class="eyebrow">Результат</p><h2 id="result-main"></h2><p id="result-range" class="result-range"></p>
+      <dl class="result-meta"><div><dt>Надёжность оценки</dt><dd id="result-confidence"></dd></div><div><dt>Согласованность данных на шпуле</dt><dd id="result-consistency"></dd></div></dl>
       <p id="result-warning" class="note"></p>
-      <p><strong>Следующий шаг:</strong> после реальной намотки проверьте уровень у бортика. Паспортные цифры и фактический диаметр материала могут отличаться.</p>
+      <p><strong>Следующий шаг:</strong> после реальной намотки проверьте уровень у бортика. Значения на шпуле округлены, а фактический диаметр материала и плотность укладки могут отличаться.</p>
     </section>
   </main>
   <footer class="site-footer"><div class="shell">Spool Calc · расчёт выполняется локально в браузере</div></footer>
   <script type="module" src="./app.js"></script>
-</body>
-</html>
+</body></html>

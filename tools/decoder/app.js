@@ -7,8 +7,8 @@ const input = document.querySelector('#marking');
 const error = document.querySelector('#marking-error');
 
 const labels = {
-  'mm-m': 'Маркировка mm / m',
-  'lb-yd': 'Маркировка lb / yd',
+  'mm-m': 'Маркировка «мм / м»',
+  'lb-yd': 'Маркировка «фунты / ярды (lb / yd)»',
   pe: 'Маркировка PE',
   no: 'Маркировка No.',
   unknown: 'Не удалось распознать',
@@ -29,7 +29,7 @@ function renderActions(decoded) {
   if (decoded.kind === 'unknown') {
     const hint = document.createElement('p');
     hint.className = 'form-help';
-    hint.textContent = 'Проверьте, что в строке есть сами единицы: mm/m, lb/yd, PE или No.';
+    hint.textContent = 'Проверьте, что в строке есть единицы: мм/м, фунты/ярды (lb/yd), PE или No.';
     root.append(hint);
   }
 }

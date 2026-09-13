@@ -4,89 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Калькулятор бэкинга для шпули — Spool Calc</title>
-  <meta name="description" content="Оцените, сколько бэкинга потребуется под основную леску или плетёный шнур по паспортной маркировке шпули.">
+  <meta name="description" content="Оцените, сколько бэкинга потребуется под основную леску или плетёный шнур по данным с маркировки шпули.">
   <link rel="canonical" href="https://whil3true.github.io/spool_calc/tools/backing/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Калькулятор бэкинга для шпули — Spool Calc">
-  <meta property="og:description" content="Оценка бэкинга диапазоном с обязательной практической проверкой обратной намоткой.">
-  <meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/backing/">
-  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../../assets/styles.css">
-  <link rel="stylesheet" href="../capacity/tool.css">
-  <link rel="stylesheet" href="./tool.css">
+  <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="Калькулятор бэкинга для шпули — Spool Calc"><meta property="og:description" content="Оценка бэкинга диапазоном с обязательной практической проверкой обратной намоткой."><meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/backing/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="../capacity/tool.css"><link rel="stylesheet" href="./tool.css">
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержанию</a>
-  <header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Spool Calc</a><nav aria-label="Основная навигация"><a href="../capacity/">Вместимость</a><a href="../../#tools">Все инструменты</a></nav></div></header>
+  <header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Spool Calc</a><nav aria-label="Основная навигация"><a href="../capacity/">Вместимость</a><a href="../../#tools">Все инструменты</a><a href="../../guides/">Справочник</a></nav></div></header>
   <main id="main" class="shell narrow tool-page">
-    <p class="eyebrow">Инструмент 2</p>
-    <h1>Сколько бэкинга намотать?</h1>
-    <p class="lead">Укажите паспортную вместимость шпули, вашу основную леску и диаметр бэкинга. Результат будет диапазоном: реальная укладка любит портить идеально красивые расчёты.</p>
-
+    <p class="eyebrow">Инструмент 2</p><h1>Сколько бэкинга намотать?</h1>
+    <p class="lead">Укажите данные с маркировки шпули, вашу основную леску и диаметр бэкинга. Результат будет диапазоном, потому что реальная укладка никогда не обязана уважать красивую цифру.</p>
     <form id="backing-form" novalidate>
-      <section class="tool-step" aria-labelledby="spool-title">
-        <h2 id="spool-title">1. Маркировка шпули</h2>
-        <p class="form-help">Перепишите одну или несколько пар mm / m, например 0,18 / 170.</p>
-        <div id="reference-pairs" class="pair-list"></div>
-        <button class="button button-secondary" type="button" id="add-pair">Добавить ещё строку</button>
-      </section>
-
-      <section class="tool-step" aria-labelledby="main-line-title">
-        <h2 id="main-line-title">2. Основная леска или шнур</h2>
-        <fieldset class="choice-group">
-          <legend class="sr-only">Тип основной лески</legend>
-          <label><input type="radio" name="mainMaterial" value="mono" checked> Монофильная леска</label>
-          <label><input type="radio" name="mainMaterial" value="fluoro"> Флюорокарбон</label>
-          <label><input type="radio" name="mainMaterial" value="braid-mm"> Плетёный шнур по заявленному mm</label>
-        </fieldset>
-        <div class="field-grid">
-          <label class="field">Диаметр, mm
-            <input name="mainDiameter" inputmode="decimal" autocomplete="off" placeholder="0,18" aria-describedby="main-error main-help">
-          </label>
-          <label class="field">Сколько метров будете наматывать
-            <input name="mainLength" inputmode="decimal" autocomplete="off" placeholder="100" aria-describedby="main-error">
-          </label>
-        </div>
-        <p id="main-help" class="form-help">Для braid вводите только заявленный производителем диаметр в mm. PE и lb не переводятся в mm.</p>
-        <p id="main-error" class="field-error" aria-live="polite"></p>
-      </section>
-
-      <section class="tool-step" aria-labelledby="backing-title">
-        <h2 id="backing-title">3. Какой будет бэкинг?</h2>
-        <label class="field">Диаметр бэкинга, mm
-          <input name="backingDiameter" inputmode="decimal" autocomplete="off" placeholder="0,25" aria-describedby="backing-error backing-help">
-        </label>
-        <p id="backing-help" class="form-help">Для предсказуемого расчёта используйте обычную монофильную леску известного диаметра.</p>
-        <p id="backing-error" class="field-error" aria-live="polite"></p>
-      </section>
-
+      <section class="tool-step" aria-labelledby="spool-title"><h2 id="spool-title">1. Маркировка шпули</h2><p class="form-help">Перепишите одну или несколько строк вида «диаметр / длина», например 0,18 мм / 170 м.</p><div id="reference-pairs" class="pair-list"></div><button class="button button-secondary" type="button" id="add-pair">Добавить ещё строку</button></section>
+      <section class="tool-step" aria-labelledby="main-line-title"><h2 id="main-line-title">2. Основная леска или шнур</h2><fieldset class="choice-group"><legend class="sr-only">Тип основной лески</legend><label><input type="radio" name="mainMaterial" value="mono" checked> Монофильная леска</label><label><input type="radio" name="mainMaterial" value="fluoro"> Флюорокарбон</label><label><input type="radio" name="mainMaterial" value="braid-mm"> Плетёный шнур по заявленному диаметру</label></fieldset><div class="field-grid"><label class="field">Диаметр, мм<input name="mainDiameter" inputmode="decimal" autocomplete="off" placeholder="0,18" aria-describedby="main-error main-help"></label><label class="field">Сколько метров будете наматывать<input name="mainLength" inputmode="decimal" autocomplete="off" placeholder="100" aria-describedby="main-error"></label></div><p id="main-help" class="form-help">Для плетёного шнура вводите только заявленный производителем диаметр в миллиметрах (мм). Размер PE и прочность в фунтах (lb) не переводятся в диаметр.</p><p id="main-error" class="field-error" aria-live="polite"></p></section>
+      <section class="tool-step" aria-labelledby="backing-title"><h2 id="backing-title">3. Какой будет бэкинг?</h2><label class="field">Диаметр бэкинга, мм<input name="backingDiameter" inputmode="decimal" autocomplete="off" placeholder="0,25" aria-describedby="backing-error backing-help"></label><p id="backing-help" class="form-help">Для более предсказуемой оценки используйте обычную монофильную леску известного диаметра.</p><p id="backing-error" class="field-error" aria-live="polite"></p></section>
       <button class="button" type="submit">Оценить бэкинг</button>
     </form>
-
-    <section id="result" class="result-card" hidden aria-live="polite" tabindex="-1">
-      <p class="eyebrow">Результат</p>
-      <h2 id="result-main"></h2>
-      <p id="result-range" class="result-range"></p>
-      <dl class="result-meta">
-        <div><dt>Уверенность</dt><dd id="result-confidence"></dd></div>
-        <div><dt>Согласованность маркировки</dt><dd id="result-consistency"></dd></div>
-      </dl>
-      <p id="result-warning" class="note"></p>
-
-      <div class="verification-box">
-        <h3>Как проверить без гадания</h3>
-        <ol>
-          <li>Если есть запасная шпуля сопоставимой вместимости, сначала намотайте на неё всю основную леску.</li>
-          <li>Добавляйте бэкинг поверх основной лески до нужного уровня у бортика.</li>
-          <li>Перемотайте всё на рабочую шпулю: бэкинг окажется снизу, основная леска сверху.</li>
-          <li>Оцените уровень заполнения по инструкции вашей катушки; универсального зазора для всех шпуль нет.</li>
-        </ol>
-        <p>Если подходящей запасной шпули нет, расчёт используйте как стартовую длину, а финальный уровень проверяйте физически.</p>
-      </div>
-    </section>
+    <section id="result" class="result-card" hidden aria-live="polite" tabindex="-1"><p class="eyebrow">Результат</p><h2 id="result-main"></h2><p id="result-range" class="result-range"></p><dl class="result-meta"><div><dt>Надёжность оценки</dt><dd id="result-confidence"></dd></div><div><dt>Согласованность данных на шпуле</dt><dd id="result-consistency"></dd></div></dl><p id="result-warning" class="note"></p><div class="verification-box"><h3>Как проверить без гадания</h3><ol><li>Если есть запасная шпуля сопоставимой вместимости, сначала намотайте на неё всю основную леску.</li><li>Добавляйте бэкинг поверх основной лески до нужного уровня у бортика.</li><li>Перемотайте всё на рабочую шпулю: бэкинг окажется снизу, основная леска сверху.</li><li>Оцените уровень заполнения по инструкции вашей катушки; универсального зазора для всех шпуль нет.</li></ol><p>Если подходящей запасной шпули нет, расчёт используйте как стартовую длину, а финальный уровень проверяйте физически.</p></div></section>
   </main>
-  <footer class="site-footer"><div class="shell">Spool Calc · расчёт выполняется локально в браузере</div></footer>
-  <script type="module" src="./app.js"></script>
-</body>
-</html>
+  <footer class="site-footer"><div class="shell">Spool Calc · расчёт выполняется локально в браузере</div></footer><script type="module" src="./app.js"></script>
+</body></html>
