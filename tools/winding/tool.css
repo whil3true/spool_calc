@@ -1,0 +1,6 @@
+.check-row { display: flex; gap: .65rem; align-items: flex-start; font-weight: 650; }
+.check-row input { margin-top: .25rem; }
+.guide-list { display: grid; gap: .8rem; padding-left: 1.4rem; }
+.guide-list li { padding-left: .2rem; }
+.warning-list li { color: var(--muted); }
+.result-card h3 { margin-top: 1.7rem; margin-bottom: .5rem; }
