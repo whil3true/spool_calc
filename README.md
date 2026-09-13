@@ -1,6 +1,8 @@
-# Spool Calc
+# Шпулометр
 
-Статический русскоязычный помощник по заполнению шпули безынерционной катушки.
+Статический русскоязычный помощник по заполнению шпули безынерционной катушки: лесоёмкость, бэкинг, маркировка и правильная намотка.
+
+Рабочее имя репозитория остаётся `spool_calc`; пользовательский бренд — **Шпулометр**.
 
 ## Product boundary
 
@@ -16,17 +18,27 @@
 - `tests/` — unit/regression и structural tests на `node:test`.
 - `.github/workflows/test.yml` — CI unit tests.
 
-Runtime-зависимостей нет. Сайт должен работать как GitHub Pages project site из `/spool_calc/`, поэтому runtime-пути относительные.
+Runtime-зависимостей нет. До подключения собственного домена сайт работает как GitHub Pages project site из `/spool_calc/`, поэтому runtime-пути относительные.
 
 ## Domain rules
 
 - Mono capacity: `L2 = L1 × (d1 / d2)^2`.
-- Несколько паспортных пар агрегируются через медиану `K = L × d²`; внутренний разброс сохраняется как сигнал качества входных данных.
+- Несколько строк маркировки агрегируются через медиану `K = L × d²`; внутренний разброс сохраняется как сигнал качества входных данных.
 - PE → denier: `denier = 200 × PE`.
 - Нет точных PE ↔ mm, PE ↔ lb, lb ↔ mm преобразований.
 - Backing: `Lback = (Q - Qmain) / dback²`, только как ориентир.
 - Braid получает более широкий диапазон неопределённости и обязательную физическую проверку.
 - Практические guide-страницы не заменяют инструкцию конкретной катушки или материала.
+
+## SEO architecture
+
+Бренд: **Шпулометр**.
+
+Планируемый основной домен после повторной проверки и регистрации: `shpulometr.ru`.
+
+До покупки домена canonical и sitemap остаются на рабочем GitHub Pages URL. После подключения собственного домена они должны быть атомарно переведены на `https://shpulometr.ru/`.
+
+`/guides/underfill-overfill/` объединён с `/guides/spool-lip-gap/`. На GitHub Pages используется временная HTML-переадресация + `noindex`; настоящий HTTP 301 нужно настроить при подключении собственного домена.
 
 ## Development
 
@@ -36,7 +48,7 @@ npm test
 
 Открытие сайта не требует build-step: достаточно статического HTTP-сервера или GitHub Pages.
 
-## Current URLs
+## Current indexable URLs
 
 ### Tools
 
@@ -52,9 +64,9 @@ npm test
 - `/guides/spool-lip-gap/`
 - `/guides/mono-winding/`
 - `/guides/braid-winding/`
+- `/guides/tie-line-to-spool/`
 - `/guides/why-backing/`
 - `/guides/reverse-winding/`
 - `/guides/pe-not-mm/`
 - `/guides/lb-not-diameter/`
-- `/guides/underfill-overfill/`
 - `/guides/line-lay-problems/`

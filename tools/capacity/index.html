@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Калькулятор вместимости шпули — Spool Calc</title>
-  <meta name="description" content="Оцените, сколько лески другого диаметра войдёт на шпулю по одной или нескольким строкам маркировки диаметра и длины.">
+  <title>Калькулятор лесоёмкости шпули онлайн — Шпулометр</title>
+  <meta name="description" content="Укажите маркировку шпули и новый диаметр — калькулятор оценит, сколько лески поместится. Для плетёного шнура результат показывается диапазоном.">
   <link rel="canonical" href="https://whil3true.github.io/spool_calc/tools/capacity/">
-  <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="Калькулятор вместимости шпули — Spool Calc"><meta property="og:description" content="Расчёт по данным с маркировки шпули с разумным диапазоном неопределённости."><meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/capacity/">
+  <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="Калькулятор лесоёмкости шпули онлайн — Шпулометр"><meta property="og:description" content="Расчёт вместимости и лесоёмкости шпули по данным с её маркировки."><meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/capacity/">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="./tool.css">
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержанию</a>
-  <header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Spool Calc</a><nav aria-label="Основная навигация"><a href="../../#tools">Инструменты</a><a href="../../guides/">Справочник</a></nav></div></header>
+  <header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Шпулометр</a><nav aria-label="Основная навигация"><a href="../../#tools">Инструменты</a><a href="../../guides/">Справочник</a></nav></div></header>
   <main id="main" class="shell narrow tool-page">
     <p class="eyebrow">Вместимость шпули</p>
-    <h1>Сколько лески войдёт?</h1>
-    <p class="lead">Две вещи: что написано на шпуле и какой диаметр хотите намотать.</p>
+    <h1>Калькулятор лесоёмкости и вместимости шпули</h1>
+    <p class="lead">Укажите, что написано на шпуле, и диаметр лески или шнура, который хотите намотать.</p>
     <div class="quick-facts" aria-label="Особенности расчёта"><span>≈ 1 минута</span><span>результат диапазоном</span><span>по данным со шпули</span></div>
     <form id="capacity-form" novalidate>
       <section class="tool-step" aria-labelledby="step-1-title">
@@ -45,7 +45,8 @@
       <p id="result-warning" class="note"></p>
       <p><strong>Проверьте после намотки:</strong> реальный уровень у бортика важнее расчётной цифры.</p>
     </section>
+    <section class="tool-step" aria-labelledby="capacity-about"><h2 id="capacity-about">Почему результат ориентировочный</h2><p>Для монофильной лески и флюорокарбона расчёт опирается на диаметр и длину с маркировки шпули. Для плетёнки заявленный диаметр хуже описывает реальную укладку, поэтому результат показывается диапазоном.</p><p class="form-help">Если вы пытаетесь подобрать метраж только по размеру катушки 1000, 2500 или 3000, этого недостаточно: используйте маркировку конкретной шпули.</p></section>
   </main>
-  <footer class="site-footer"><div class="shell">Spool Calc · расчёт выполняется локально в браузере</div></footer>
+  <footer class="site-footer"><div class="shell">Шпулометр · расчёт выполняется локально в браузере</div></footer>
   <script type="module" src="./app.js"></script>
 </body></html>
