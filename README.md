@@ -13,12 +13,13 @@
 ## Architecture
 
 - `index.html` — индексируемый shell без framework.
-- `assets/` — локальные стили и favicon.
+- `assets/` — локальные стили, favicon и bootstrap Яндекс Метрики.
 - `src/domain/` — чистая предметная логика без DOM.
+- `src/analytics/` — единый мост продуктовых событий к аналитике.
 - `tests/` — unit/regression и structural tests на `node:test`.
 - `.github/workflows/test.yml` — CI unit tests.
 
-Runtime-зависимостей нет. До подключения собственного домена сайт работает как GitHub Pages project site из `/spool_calc/`, поэтому runtime-пути относительные.
+Runtime-зависимостей нет. Сайт публикуется через GitHub Pages на собственном домене `https://shpulometr.ru/`.
 
 ## Domain rules
 
@@ -34,11 +35,19 @@ Runtime-зависимостей нет. До подключения собст�
 
 Бренд: **Шпулометр**.
 
-Планируемый основной домен после повторной проверки и регистрации: `shpulometr.ru`.
+Основной домен: `https://shpulometr.ru/`.
 
-До покупки домена canonical и sitemap остаются на рабочем GitHub Pages URL. После подключения собственного домена они должны быть атомарно переведены на `https://shpulometr.ru/`.
+Canonical, sitemap.xml и robots.txt должны использовать только основной домен. `CNAME` содержит `shpulometr.ru`.
 
-`/guides/underfill-overfill/` объединён с `/guides/spool-lip-gap/`. На GitHub Pages используется временная HTML-переадресация + `noindex`; настоящий HTTP 301 нужно настроить при подключении собственного домена.
+`/guides/underfill-overfill/` объединён с `/guides/spool-lip-gap/`. Старый URL остаётся `noindex` с canonical и HTML-переадресацией на объединённый материал. GitHub Pages не предоставляет произвольный серверный HTTP 301 для отдельного статического пути.
+
+## Analytics
+
+Яндекс Метрика: счётчик `112552271`.
+
+`assets/metrika.js` загружает официальный tag.js с настройками Webvisor, clickmap, trackLinks и accurateTrackBounce. Все публичные HTML-страницы подключают этот bootstrap и noscript-pixel.
+
+Инструменты уже отправляют предметные события через `src/analytics/events.js`; этот слой сохраняет внутренний `spoolcalc:event` и дополнительно отправляет соответствующую цель через `ym(..., 'reachGoal', ...)`.
 
 ## Development
 
