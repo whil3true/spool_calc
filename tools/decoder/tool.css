@@ -1,0 +1,20 @@
+.tool-page { padding-block: 3rem 5rem; }
+.tool-page h1 { font-size: clamp(2rem, 7vw, 3.6rem); }
+.tool-step { margin-block: 2rem; padding: 1.25rem; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); }
+.tool-step h2 { margin-top: 0; font-size: 1.35rem; }
+.form-help { color: var(--muted); font-size: .95rem; }
+.field { display: grid; gap: .35rem; font-weight: 650; }
+.field input { width: 100%; min-height: 48px; padding: .75rem .8rem; border: 1px solid var(--line); border-radius: .6rem; background: var(--bg); color: var(--text); font: inherit; }
+.field-error { min-height: 1.4em; margin: .35rem 0 0; color: #a33124; font-weight: 650; }
+.result-card { margin-top: 2.5rem; padding: 1.5rem; border: 2px solid var(--accent); border-radius: 1rem; background: var(--surface); }
+.result-card h2 { margin: .2rem 0; font-size: clamp(1.6rem, 6vw, 2.4rem); }
+.result-explanation { font-size: 1.08rem; }
+.result-actions { margin-top: 1.25rem; }
+.button-secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
+.button-secondary:hover { background: var(--surface); }
+.decoder-reference { margin-top: 3rem; }
+.reference-list { display: grid; gap: 1rem; }
+.reference-list div { padding: 1rem; border: 1px solid var(--line); border-radius: .8rem; background: var(--surface); }
+.reference-list dt { font-weight: 800; }
+.reference-list dd { margin: .3rem 0 0; color: var(--muted); }
+@media (prefers-color-scheme: dark) { .field-error { color: #ff9d91; } }
