@@ -13,20 +13,58 @@
   <a class="skip-link" href="#main">К основному содержанию</a>
   <header class="site-header"><div class="shell header-row"><a class="brand" href="./" aria-label="Spool Calc, главная">Spool Calc</a><nav aria-label="Основная навигация"><a href="#tools">Инструменты</a><a href="./guides/">Справочник</a><a href="#method">Как считаем</a></nav></div></header>
   <main id="main">
-    <section class="hero shell"><p class="eyebrow">Катушка + леска + заполнение шпули</p><h1>Перепишите то, что написано на шпуле. Остальное посчитаем без выдуманной точности.</h1><p class="lead">Сайт оценит вместимость и количество бэкинга по данным с маркировки шпули, покажет разумный диапазон и проведёт через практическую проверку намотки.</p><a class="button" href="./tools/capacity/">Рассчитать вместимость</a></section>
-    <section id="tools" class="section shell" aria-labelledby="tools-title"><h2 id="tools-title">Инструменты</h2><div class="cards">
-      <a class="card card-link" href="./tools/capacity/"><h3>Вместимость шпули</h3><p>Расчёт по одной или нескольким строкам маркировки «диаметр / длина».</p><span>Открыть инструмент</span></a>
-      <a class="card card-link" href="./tools/backing/"><h3>Бэкинг</h3><p>Оценка количества подмотки с диапазоном и проверкой обратной намоткой.</p><span>Открыть инструмент</span></a>
-      <a class="card card-link" href="./tools/decoder/"><h3>Маркировка</h3><p>Разбираем мм/м, фунты/ярды (lb/yd), PE и No. без ложных взаимных переводов.</p><span>Открыть инструмент</span></a>
-      <a class="card card-link" href="./tools/winding/"><h3>Как намотать</h3><p>Практический мастер для монофильной лески, флюорокарбона и плетёного шнура.</p><span>Открыть инструмент</span></a>
+    <section class="hero shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Шпуля · леска · бэкинг</p>
+        <h1>Намотать правильно проще, чем гадать.</h1>
+        <p class="lead">Перепишите маркировку со шпули. Получите ориентир по вместимости, бэкингу и понятный план намотки.</p>
+        <div class="hero-actions"><a class="button" href="./tools/capacity/">Рассчитать вместимость</a><a class="text-link" href="./tools/winding/">Как намотать →</a></div>
+        <div class="trust-row" aria-label="Ключевые свойства"><span>Без регистрации</span><span>Без ложной точности</span><span>Работает в браузере</span></div>
+      </div>
+      <div class="spool-visual" aria-hidden="true">
+        <div class="spool-label spool-label-a">0,18 мм · 170 м</div>
+        <div class="spool-label spool-label-b">PE #1.0</div>
+        <div class="spool-shell"><div class="spool-line"></div><div class="spool-core"></div></div>
+        <div class="spool-caption"><strong>Шпуля заполнена?</strong><span>Проверяем расчётом и намоткой</span></div>
+      </div>
+    </section>
+
+    <section id="tools" class="section shell" aria-labelledby="tools-title">
+      <div class="section-heading"><div><p class="eyebrow">Что нужно сделать?</p><h2 id="tools-title">Выберите задачу</h2></div><p>Четыре инструмента вместо длинной инструкции на все случаи жизни.</p></div>
+      <div class="cards tool-cards">
+        <a class="card card-link card-capacity" href="./tools/capacity/"><span class="card-icon" aria-hidden="true">↔</span><div><h3>Сколько войдёт?</h3><p>Пересчитать вместимость под другой диаметр.</p></div><span class="card-arrow" aria-hidden="true">→</span></a>
+        <a class="card card-link card-backing" href="./tools/backing/"><span class="card-icon" aria-hidden="true">≈</span><div><h3>Сколько бэкинга?</h3><p>Понять, сколько подмотки добавить под основную леску.</p></div><span class="card-arrow" aria-hidden="true">→</span></a>
+        <a class="card card-link card-decoder" href="./tools/decoder/"><span class="card-icon" aria-hidden="true">A</span><div><h3>Что значит маркировка?</h3><p>Разобрать мм/м, lb/yd, PE и No.</p></div><span class="card-arrow" aria-hidden="true">→</span></a>
+        <a class="card card-link card-winding" href="./tools/winding/"><span class="card-icon" aria-hidden="true">↻</span><div><h3>Как намотать?</h3><p>Получить короткий план для лески или шнура.</p></div><span class="card-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="journey section-muted" aria-label="Как пользоваться сайтом"><div class="shell journey-grid">
+      <div class="journey-step"><span>1</span><strong>Смотрите маркировку</strong><small>Например 0,18 мм / 170 м</small></div>
+      <div class="journey-line" aria-hidden="true"></div>
+      <div class="journey-step"><span>2</span><strong>Получаете ориентир</strong><small>Без цифр до сотых метра</small></div>
+      <div class="journey-line" aria-hidden="true"></div>
+      <div class="journey-step"><span>3</span><strong>Проверяете на шпуле</strong><small>Уровень и укладка важнее формулы</small></div>
     </div></section>
-    <section class="section shell" aria-labelledby="guides-title"><p class="eyebrow">Практические ответы</p><h2 id="guides-title">Справочник по шпуле и намотке</h2><p class="lead">Короткие страницы для вопросов, которые не требуют ещё одного калькулятора: PE, фунты (lb), уровень у бортика, обратная намотка и проблемы укладки.</p><div class="cards">
-      <a class="card card-link" href="./guides/spool-marking/"><h3>Как читать маркировку</h3><p>мм/м, фунты/ярды (lb/yd), PE и No. без ложных взаимных переводов.</p></a>
-      <a class="card card-link" href="./guides/reverse-winding/"><h3>Обратная намотка</h3><p>Практическая проверка количества бэкинга по реальному уровню шпули.</p></a>
-      <a class="card card-link" href="./guides/pe-not-mm/"><h3>Почему PE не равно диаметру</h3><p>Что PE действительно описывает и почему универсальная таблица диаметра не работает.</p></a>
-      <a class="card card-link" href="./guides/"><h3>Все материалы справочника</h3><p>Намотка лески и шнура, заполнение, бэкинг и проблемы укладки.</p></a>
-    </div></section>
-    <section id="method" class="section section-muted"><div class="shell narrow"><h2>Что сайт считает, а что только оценивает</h2><p><strong>Монофильная леска и флюорокарбон по фактическому диаметру:</strong> расчётная модель пригодна как ориентир. Данные на шпуле округлены, а реальная укладка всё равно имеет погрешность.</p><p><strong>Плетёный шнур и бэкинг:</strong> только осторожная оценка диапазоном. PE и фунты (lb) не считаются физическим диаметром.</p><p class="note">Практическая проверка уровня у бортика и метод обратной намотки являются частью результата, а не примечанием мелким шрифтом.</p></div></section>
+
+    <section class="section shell" aria-labelledby="guides-title">
+      <div class="section-heading"><div><p class="eyebrow">Если нужен ответ, а не калькулятор</p><h2 id="guides-title">Короткий справочник</h2></div><a class="text-link" href="./guides/">Все материалы →</a></div>
+      <div class="cards compact-cards">
+        <a class="card card-link" href="./guides/spool-marking/"><span class="mini-tag">Маркировка</span><h3>мм, lb, PE: что из этого что?</h3></a>
+        <a class="card card-link" href="./guides/reverse-winding/"><span class="mini-tag">Практика</span><h3>Обратная намотка без гадания</h3></a>
+        <a class="card card-link" href="./guides/spool-lip-gap/"><span class="mini-tag">Заполнение</span><h3>Сколько оставить до бортика?</h3></a>
+        <a class="card card-link" href="./guides/line-lay-problems/"><span class="mini-tag">Укладка</span><h3>Конус, ямы и провалы</h3></a>
+      </div>
+    </section>
+
+    <section id="method" class="section method-section"><div class="shell">
+      <div class="section-heading"><div><p class="eyebrow">Принцип сайта</p><h2>Три правила вместо мелкого шрифта</h2></div></div>
+      <div class="principle-grid">
+        <article><span class="principle-icon">✓</span><h3>Диаметр можно считать</h3><p>Для монофильной лески и флюорокарбона используем геометрическую модель.</p></article>
+        <article><span class="principle-icon">≈</span><h3>Шнур только оцениваем</h3><p>PE и фунты не превращаем в «точный» диаметр.</p></article>
+        <article><span class="principle-icon">◎</span><h3>Финал проверяем руками</h3><p>Реальный уровень у бортика и укладка важнее красивой цифры.</p></article>
+      </div>
+    </section>
   </main>
   <footer class="site-footer"><div class="shell">Spool Calc · расчёты выполняются локально в браузере</div></footer>
 </body>

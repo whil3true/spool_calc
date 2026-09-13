@@ -36,10 +36,12 @@ test('guide index links to all ten guide pages', () => {
   for (const slug of guideLinks) assert.ok(existsSync(resolve(repoRoot, `guides/${slug}/index.html`)), `missing guide: ${slug}`);
 });
 
-test('homepage tool cards are fully clickable links', () => {
+test('homepage keeps four fully clickable visual tool cards', () => {
   const index = readFileSync(resolve(repoRoot, 'index.html'), 'utf8');
-  const toolCards = [...index.matchAll(/<a class="card card-link" href="\.\/tools\//g)];
-  assert.equal(toolCards.length, 4);
+  assert.equal([...index.matchAll(/<a class="card card-link card-[^"]+" href="\.\/tools\//g)].length, 4);
+  assert.equal([...index.matchAll(/class="card-icon"/g)].length, 4);
+  assert.match(index, /class="spool-visual"/);
+  assert.equal([...index.matchAll(/class="journey-step"/g)].length, 3);
 });
 
 test('user-facing copy avoids ambiguous country-passport wording', () => {
@@ -52,8 +54,12 @@ test('user-facing copy avoids ambiguous country-passport wording', () => {
   assert.deepEqual(offenders, [], `ambiguous wording found in: ${offenders.join(', ')}`);
 });
 
-test('site does not force an automatic dark theme', () => {
-  const css = readFileSync(resolve(repoRoot, 'assets/styles.css'), 'utf8');
-  assert.doesNotMatch(css, /prefers-color-scheme\s*:\s*dark/i);
-  assert.match(css, /color-scheme:\s*light/i);
+test('site stays light and tool styles do not resurrect automatic dark mode', () => {
+  const cssFiles = [
+    resolve(repoRoot, 'assets/styles.css'),
+    resolve(repoRoot, 'tools/capacity/tool.css'),
+    resolve(repoRoot, 'tools/decoder/tool.css'),
+  ];
+  for (const path of cssFiles) assert.doesNotMatch(readFileSync(path, 'utf8'), /prefers-color-scheme\s*:\s*dark/i);
+  assert.match(readFileSync(cssFiles[0], 'utf8'), /color-scheme:\s*light/i);
 });
