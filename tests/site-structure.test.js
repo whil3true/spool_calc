@@ -4,7 +4,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const repoRoot = process.cwd();
-const sitePrefix = '/spool_calc';
+const productionOrigin = 'https://shpulometr.ru';
 
 function sitemapUrls() {
   const sitemap = readFileSync(resolve(repoRoot, 'sitemap.xml'), 'utf8');
@@ -13,8 +13,8 @@ function sitemapUrls() {
 
 function localPathFromUrl(url) {
   const parsed = new URL(url);
-  assert.ok(parsed.pathname.startsWith(`${sitePrefix}/`) || parsed.pathname === `${sitePrefix}/`);
-  const relative = parsed.pathname.slice(sitePrefix.length).replace(/^\//, '');
+  assert.equal(parsed.origin, productionOrigin, `unexpected sitemap origin: ${url}`);
+  const relative = parsed.pathname.replace(/^\//, '');
   return relative.endsWith('/') || relative === '' ? `${relative}index.html` : relative;
 }
 
@@ -27,7 +27,11 @@ function collectFiles(dir, suffixes, result = []) {
   return result;
 }
 
-test('sitemap contains exactly sixteen real indexable pages', () => {
+function siteHtmlFiles() {
+  return [resolve(repoRoot, 'index.html'), ...collectFiles(resolve(repoRoot, 'guides'), ['.html']), ...collectFiles(resolve(repoRoot, 'tools'), ['.html'])];
+}
+
+test('sitemap contains exactly sixteen real production pages', () => {
   const urls = sitemapUrls();
   assert.equal(urls.length, 16);
   assert.equal(new Set(urls).size, 16);
@@ -45,22 +49,42 @@ test('guide index links to the ten final guide pages', () => {
   for (const slug of guideLinks) assert.ok(existsSync(resolve(repoRoot, `guides/${slug}/index.html`)), `missing guide: ${slug}`);
 });
 
-test('every indexable page has SEO basics and Shpulometr brand', () => {
+test('every indexable page has production SEO basics and Shpulometr brand', () => {
   for (const url of sitemapUrls()) {
     const path = resolve(repoRoot, localPathFromUrl(url));
     const html = readFileSync(path, 'utf8');
     assert.match(html, /<title>[^<]+<\/title>/i, `missing title: ${url}`);
     assert.match(html, /<meta name="description" content="[^"]+">/i, `missing description: ${url}`);
-    assert.match(html, /<link rel="canonical" href="[^"]+">/i, `missing canonical: ${url}`);
+    assert.match(html, new RegExp(`<link rel="canonical" href="${url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}">`, 'i'), `canonical mismatch: ${url}`);
+    assert.doesNotMatch(html, /whil3true\.github\.io\/spool_calc/i, `legacy GitHub Pages SEO URL found: ${url}`);
     assert.equal([...html.matchAll(/<h1(?:\s[^>]*)?>/gi)].length, 1, `expected one H1: ${url}`);
     assert.match(html, /Шпулометр/i, `new brand missing: ${url}`);
   }
 });
 
+test('all public HTML pages load Yandex Metrika counter 112552271', () => {
+  for (const path of siteHtmlFiles()) {
+    const html = readFileSync(path, 'utf8');
+    assert.match(html, /assets\/metrika\.js/i, `Metrika bootstrap missing: ${path}`);
+    assert.match(html, /mc\.yandex\.ru\/watch\/112552271/i, `Metrika noscript fallback missing: ${path}`);
+  }
+  const bootstrap = readFileSync(resolve(repoRoot, 'assets/metrika.js'), 'utf8');
+  assert.match(bootstrap, /112552271/);
+  assert.match(bootstrap, /webvisor:\s*true/);
+  assert.match(bootstrap, /clickmap:\s*true/);
+  assert.match(bootstrap, /trackLinks:\s*true/);
+});
+
+test('custom domain files point to shpulometr.ru', () => {
+  assert.equal(readFileSync(resolve(repoRoot, 'CNAME'), 'utf8').trim(), 'shpulometr.ru');
+  assert.match(readFileSync(resolve(repoRoot, 'robots.txt'), 'utf8'), /Sitemap:\s*https:\/\/shpulometr\.ru\/sitemap\.xml/i);
+  assert.doesNotMatch(readFileSync(resolve(repoRoot, 'sitemap.xml'), 'utf8'), /whil3true\.github\.io/i);
+});
+
 test('merged underfill page is non-indexable and points to spool lip guide', () => {
   const html = readFileSync(resolve(repoRoot, 'guides/underfill-overfill/index.html'), 'utf8');
   assert.match(html, /name="robots" content="noindex,follow"/i);
-  assert.match(html, /canonical[^>]+spool-lip-gap/i);
+  assert.match(html, /canonical[^>]+https:\/\/shpulometr\.ru\/guides\/spool-lip-gap\//i);
   assert.match(html, /http-equiv="refresh"[^>]+spool-lip-gap/i);
 });
 
@@ -80,8 +104,7 @@ test('homepage communicates product value without registration copy', () => {
 });
 
 test('user-facing copy avoids registration wording sitewide', () => {
-  const files = [resolve(repoRoot, 'index.html'), ...collectFiles(resolve(repoRoot, 'guides'), ['.html']), ...collectFiles(resolve(repoRoot, 'tools'), ['.html'])];
-  const offenders = files.filter((path) => /регистрац/i.test(readFileSync(path, 'utf8')));
+  const offenders = siteHtmlFiles().filter((path) => /регистрац/i.test(readFileSync(path, 'utf8')));
   assert.deepEqual(offenders, [], `registration wording found in: ${offenders.join(', ')}`);
 });
 
