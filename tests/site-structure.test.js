@@ -50,6 +50,12 @@ test('hero badges communicate product value without cheap registration copy', ()
   assert.match(index, /По данным со шпули/i);
 });
 
+test('user-facing copy avoids registration wording sitewide', () => {
+  const files = [resolve(repoRoot, 'index.html'), ...collectFiles(resolve(repoRoot, 'guides'), ['.html']), ...collectFiles(resolve(repoRoot, 'tools'), ['.html'])];
+  const offenders = files.filter((path) => /регистрац/i.test(readFileSync(path, 'utf8')));
+  assert.deepEqual(offenders, [], `registration wording found in: ${offenders.join(', ')}`);
+});
+
 test('user-facing copy avoids ambiguous country-passport wording', () => {
   const roots = ['index.html', 'guides', 'tools', 'src/domain/marking-decoder.js', 'src/domain/winding-guide.js'];
   const files = roots.flatMap((entry) => {
