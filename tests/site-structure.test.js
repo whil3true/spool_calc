@@ -49,6 +49,10 @@ test('guide index links to the ten final guide pages', () => {
   for (const slug of guideLinks) assert.ok(existsSync(resolve(repoRoot, `guides/${slug}/index.html`)), `missing guide: ${slug}`);
 });
 
+test('retired underfill route is absent from the published source tree', () => {
+  assert.ok(!existsSync(resolve(repoRoot, 'guides/underfill-overfill/index.html')));
+});
+
 test('every indexable page has production SEO basics and Shpulometr brand', () => {
   for (const url of sitemapUrls()) {
     const path = resolve(repoRoot, localPathFromUrl(url));
@@ -80,13 +84,6 @@ test('custom domain files point to shpulometr.ru', () => {
   assert.equal(readFileSync(resolve(repoRoot, 'CNAME'), 'utf8').trim(), 'shpulometr.ru');
   assert.match(readFileSync(resolve(repoRoot, 'robots.txt'), 'utf8'), /Sitemap:\s*https:\/\/shpulometr\.ru\/sitemap\.xml/i);
   assert.doesNotMatch(readFileSync(resolve(repoRoot, 'sitemap.xml'), 'utf8'), /whil3true\.github\.io/i);
-});
-
-test('merged underfill page is non-indexable and points to spool lip guide', () => {
-  const html = readFileSync(resolve(repoRoot, 'guides/underfill-overfill/index.html'), 'utf8');
-  assert.match(html, /name="robots" content="noindex,follow"/i);
-  assert.match(html, /canonical[^>]+https:\/\/shpulometr\.ru\/guides\/spool-lip-gap\//i);
-  assert.match(html, /http-equiv="refresh"[^>]+spool-lip-gap/i);
 });
 
 test('homepage keeps four fully clickable visual tool cards', () => {
