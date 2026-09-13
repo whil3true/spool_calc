@@ -13,10 +13,10 @@
 - `index.html` — индексируемый shell без framework.
 - `assets/` — локальные стили и favicon.
 - `src/domain/` — чистая предметная логика без DOM.
-- `tests/` — unit/regression tests на `node:test`.
+- `tests/` — unit/regression и structural tests на `node:test`.
 - `.github/workflows/test.yml` — CI unit tests.
 
-Runtime-зависимостей нет. Сайт должен работать как GitHub Pages project site из `/spool_calc/`, поэтому пути к ресурсам относительные.
+Runtime-зависимостей нет. Сайт должен работать как GitHub Pages project site из `/spool_calc/`, поэтому runtime-пути относительные.
 
 ## Domain rules
 
@@ -26,6 +26,7 @@ Runtime-зависимостей нет. Сайт должен работать 
 - Нет точных PE ↔ mm, PE ↔ lb, lb ↔ mm преобразований.
 - Backing: `Lback = (Q - Qmain) / dback²`, только как ориентир.
 - Braid получает более широкий диапазон неопределённости и обязательную физическую проверку.
+- Практические guide-страницы не заменяют инструкцию конкретной катушки или материала.
 
 ## Development
 
@@ -35,12 +36,18 @@ npm test
 
 Открытие сайта не требует build-step: достаточно статического HTTP-сервера или GitHub Pages.
 
-## Planned URLs
+## Current URLs
+
+### Tools
 
 - `/tools/capacity/`
 - `/tools/backing/`
 - `/tools/decoder/`
-- `/guides/winding/`
+- `/tools/winding/`
+
+### Guides
+
+- `/guides/`
 - `/guides/spool-marking/`
 - `/guides/spool-lip-gap/`
 - `/guides/mono-winding/`

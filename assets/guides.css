@@ -1,0 +1,17 @@
+.guide-page { padding-block: 3rem 5rem; }
+.guide-page h1 { font-size: clamp(2rem, 7vw, 3.6rem); }
+.guide-page h2 { margin-top: 2.2rem; font-size: 1.5rem; }
+.guide-page ul, .guide-page ol { padding-left: 1.3rem; }
+.guide-page li + li { margin-top: .45rem; }
+.guide-nav { display: flex; flex-wrap: wrap; gap: .7rem; margin-block: 1.5rem 2rem; }
+.guide-nav a { padding: .45rem .7rem; border: 1px solid var(--line); border-radius: .55rem; text-decoration: none; }
+.guide-nav a:hover { background: var(--surface); }
+.guide-callout { margin-block: 1.5rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .8rem; background: var(--surface); }
+.guide-callout > :first-child { margin-top: 0; }
+.guide-callout > :last-child { margin-bottom: 0; }
+.guide-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+.guide-actions .button { margin-top: 0; }
+.guide-grid { display: grid; gap: 1rem; }
+.guide-card { padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .8rem; background: var(--surface); }
+.guide-card h2, .guide-card h3 { margin-top: 0; }
+@media (min-width: 720px) { .guide-grid { grid-template-columns: repeat(2, 1fr); } }
