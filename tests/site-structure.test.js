@@ -42,10 +42,14 @@ test('homepage tool cards are fully clickable links', () => {
   assert.equal(toolCards.length, 4);
 });
 
-test('user-facing copy avoids passport wording', () => {
-  const files = collectFiles(repoRoot, ['.html', '.js']);
+test('user-facing copy avoids ambiguous country-passport wording', () => {
+  const roots = ['index.html', 'guides', 'tools', 'src/domain/marking-decoder.js', 'src/domain/winding-guide.js'];
+  const files = roots.flatMap((entry) => {
+    const path = resolve(repoRoot, entry);
+    return statSync(path).isDirectory() ? collectFiles(path, ['.html', '.js']) : [path];
+  });
   const offenders = files.filter((path) => /паспортн/i.test(readFileSync(path, 'utf8')));
-  assert.deepEqual(offenders, [], `ambiguous passport wording found in: ${offenders.join(', ')}`);
+  assert.deepEqual(offenders, [], `ambiguous wording found in: ${offenders.join(', ')}`);
 });
 
 test('site does not force an automatic dark theme', () => {
