@@ -1,6 +1,11 @@
-.check-row { display: flex; gap: .65rem; align-items: flex-start; font-weight: 650; }
-.check-row input { margin-top: .25rem; }
-.guide-list { display: grid; gap: .8rem; padding-left: 1.4rem; }
-.guide-list li { padding-left: .2rem; }
-.warning-list li { color: var(--muted); }
-.result-card h3 { margin-top: 1.7rem; margin-bottom: .5rem; }
+.check-row { display: flex; gap: .7rem; align-items: center; padding: .85rem .9rem; border: 1px solid var(--line); border-radius: .9rem; background: #fbfefd; font-weight: 700; cursor: pointer; }
+.check-row:has(input:checked) { background: var(--accent-soft); border-color: #98d1c4; }
+.check-row input { accent-color: var(--accent); }
+.guide-list { display: grid; gap: .65rem; padding-left: 0; list-style: none; counter-reset: guide; }
+ol.guide-list li { counter-increment: guide; }
+.guide-list li { position: relative; padding: .78rem .9rem .78rem 3rem; border-radius: .9rem; background: rgba(255,255,255,.72); border: 1px solid rgba(190,220,212,.75); }
+ol.guide-list li::before { content: counter(guide); position: absolute; left: .8rem; top: .72rem; width: 1.55rem; height: 1.55rem; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: white; font-size: .78rem; font-weight: 900; }
+ul.guide-list li::before { content: "✓"; position: absolute; left: .9rem; top: .72rem; color: var(--accent-strong); font-weight: 900; }
+.warning-list li { color: var(--muted); background: var(--surface-warm); border-color: #eadbb8; }
+.warning-list li::before { content: "!"; color: #a36a19; }
+.result-card h3 { margin-top: 1.7rem; margin-bottom: .65rem; }

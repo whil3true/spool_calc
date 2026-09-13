@@ -1,4 +1,5 @@
-.verification-box { margin-top: 1.5rem; padding: 1rem 1.1rem; border-radius: .8rem; background: var(--bg); border: 1px solid var(--line); }
+.verification-box { margin-top: 1.4rem; padding: 1.05rem 1.1rem; border-radius: 1rem; background: var(--surface-warm); border: 1px solid #eadbb8; }
 .verification-box h3 { margin-top: 0; }
-.verification-box ol { padding-left: 1.35rem; }
-.verification-box li + li { margin-top: .5rem; }
+.verification-box ol { display: grid; gap: .55rem; padding-left: 1.35rem; }
+.verification-box li { padding-left: .15rem; }
+.verification-box p { margin-bottom: 0; color: var(--muted); }
