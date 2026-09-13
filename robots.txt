@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://whil3true.github.io/spool_calc/sitemap.xml
