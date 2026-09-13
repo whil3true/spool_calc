@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Расшифровка маркировки шпули — Spool Calc</title>
+  <meta name="description" content="Расшифруйте mm/m, lb/yd, PE и No. на шпуле или упаковке лески без ложных переводов между диаметром и прочностью.">
+  <link rel="canonical" href="https://whil3true.github.io/spool_calc/tools/decoder/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Расшифровка маркировки шпули — Spool Calc">
+  <meta property="og:description" content="Что означают mm/m, lb/yd, PE и No. и какие преобразования действительно допустимы.">
+  <meta property="og:url" content="https://whil3true.github.io/spool_calc/tools/decoder/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <link rel="stylesheet" href="./tool.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">К основному содержанию</a>
+  <header class="site-header"><div class="shell header-row"><a class="brand" href="../../">Spool Calc</a><nav aria-label="Основная навигация"><a href="../../#tools">Инструменты</a><a href="../../#method">Как считаем</a></nav></div></header>
+  <main id="main" class="shell narrow tool-page">
+    <p class="eyebrow">Инструмент 3</p>
+    <h1>Что означает маркировка на шпуле?</h1>
+    <p class="lead">Введите строку целиком. Декодер объяснит единицы и выполнит только те преобразования, которые не требуют гадания.</p>
+
+    <form id="decoder-form" novalidate>
+      <section class="tool-step" aria-labelledby="marking-title">
+        <h2 id="marking-title">Перепишите маркировку</h2>
+        <label class="field">Строка со шпули или упаковки
+          <input id="marking" name="marking" autocomplete="off" placeholder="PE #1.2 / 150 m" aria-describedby="marking-help marking-error">
+        </label>
+        <p id="marking-help" class="form-help">Поддерживаются типичные записи mm/m, lb/yd, PE и No. Например: 0,20 mm / 140 m или 8 lb / 100 yd.</p>
+        <p id="marking-error" class="field-error" aria-live="polite"></p>
+      </section>
+      <button class="button" type="submit">Расшифровать</button>
+    </form>
+
+    <section id="result" class="result-card" hidden aria-live="polite" tabindex="-1">
+      <p class="eyebrow">Расшифровка</p>
+      <h2 id="result-kind"></h2>
+      <p id="result-explanation" class="result-explanation"></p>
+      <p id="result-warning" class="note"></p>
+      <div id="result-actions" class="result-actions"></div>
+    </section>
+
+    <section class="decoder-reference" aria-labelledby="reference-title">
+      <h2 id="reference-title">Коротко об обозначениях</h2>
+      <dl class="reference-list">
+        <div><dt>mm / m</dt><dd>Заявленный диаметр материала и длина. Это самый прямой формат для расчёта вместимости по диаметру.</dd></div>
+        <div><dt>lb / yd</dt><dd>Разрывная нагрузка в фунтах и длина в ярдах. Ярды можно перевести в метры, но lb не определяет диаметр.</dd></div>
+        <div><dt>PE</dt><dd>Размер по линейной массе. PE можно выразить в denier по стандартному соотношению, но не превращать универсально в mm или lb.</dd></div>
+        <div><dt>No.</dt><dd>Номер размерной системы. Его смысл нужно сверять с конкретным стандартом или таблицей производителя.</dd></div>
+      </dl>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="shell">Spool Calc · декодирование выполняется локально в браузере</div></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
