@@ -44,6 +44,12 @@ test('homepage keeps four fully clickable visual tool cards', () => {
   assert.equal([...index.matchAll(/class="journey-step"/g)].length, 3);
 });
 
+test('hero badges communicate product value without cheap registration copy', () => {
+  const index = readFileSync(resolve(repoRoot, 'index.html'), 'utf8');
+  assert.doesNotMatch(index, /Без регистрации/i);
+  assert.match(index, /По данным со шпули/i);
+});
+
 test('user-facing copy avoids ambiguous country-passport wording', () => {
   const roots = ['index.html', 'guides', 'tools', 'src/domain/marking-decoder.js', 'src/domain/winding-guide.js'];
   const files = roots.flatMap((entry) => {
